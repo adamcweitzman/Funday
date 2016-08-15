@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Funday</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="href=http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+    <link rel="stylesheet" href="app/assets/app.css"/>
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+
+  </head>
+
+  <body ng-app="Funday" layout="column" ng-controller="FundayController as ctrl" ng-cloak>
+
+    <md-toolbar layout="row" layout-align="center start">
+      <h1>Funday - Beta</h1>
+    </md-toolbar>
+  
+    <md-content layout="row" layout-align="center start">
+      <md-card>
+         <md-card-content ng-show="day" ng-init="false" layout="column">
+           <h2>Your Super Fun Day!</h2>
+           <h3>Brunch</h3>
+           <p>{{data.eat}}</p>
+           <h3>Activities</h3>
+           <div ng-repeat="activity in data.activities">
+            <p>{{activity}}</p>
+           </div>
+         </md-card-content>
+         <md-button class="md-raised" ng-show="!day" ng-click="day = true" >GENERATE DAY</md-button>
+      </md-card>
+    </md-content>
+
+<!--     <div flex layout="row">
+
+        <md-sidenav  ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2" >
+          <md-list>
+            <md-list-item ng-repeat="it in ul.users">
+                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+                  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+                  {{it.name}}
+                </md-button>
+            </md-list-item>
+          </md-list>
+        </md-sidenav>
+
+        <md-content flex id="content">
+          <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+          <h2>{{ul.selected.name}}</h2>
+          <p>{{ul.selected.content}}</p>
+
+          <md-button class="share" md-no-ink ng-click="ul.makeContact(ul.selected)" aria-label="Share with {{ ul.selected.name }}">
+            <md-icon md-svg-icon="share"></md-icon>
+          </md-button>
+        </md-content>
+
+    </div> -->
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+    <script type="text/javascript">
+
+          angular
+              .module('Funday', ['ngMaterial'])
+              .config(function($mdThemingProvider, $mdIconProvider) {
+
+                  $mdIconProvider
+                      .defaultIconSet("./assets/svg/avatars.svg", 128)
+                      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
+                      .icon("share"      , "./assets/svg/share.svg"       , 24)
+                      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
+                      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
+                      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
+                      .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+
+                      $mdThemingProvider.theme('default')
+                          .primaryPalette('brown')
+                          .accentPalette('red');
+
+
+
+              })
+              .controller('FundayController',['$scope', function($scope) {
+
+                var Eats = new Array('Moonshines', 'Magnolia Cafe', 'South Congress Cafe', 'Bouldin Creek Cafe', '24 Diner', 'Lockhart BBQ', 'Franklins BBQ', 'The Oasis', 'Moonshines', 'Bangers', 'La Barbecue', 'Pinthouse Pizza', 'Elephant Room', 'The Whip In');
+                var Activities = new Array('Houston Space Center', 'Austin Zoo', 'Cathedral of Junk', 'Whip In', 'Enchanted Rock', 'Lost Maples', '4 Hour Float', 'Fredericksburg Wineries', 'Hamilton Pool', 'Jacobs Well', 'Blue Hole', 'Nascar', 'Round Rock Express', 'The Oasis', 'Deep Eddy Distillery', 'Galveston/Corpus', 'Rodeo', 'WWE', 'Monster Truck Rally', 'Gruene Hall', 'Broken Spoke', 'Duck Boat Tour', 'Segway Tour', 'Capital Tour', 'Concealed Handgun', 'Skeet Shooting', 'Twisted X Brewery', 'Blue Owl Brewery', 'Lake Travis Winery Tour', 'Live Music', 'Two Stepping', 'Ziplining', 'Indoor Skydiving', 'Bat Boat', 'Schlitterbahn', 'Surf Park', 'Sculpture Garden', 'Cathedral of Junk', 'Hippies Hollow', 'Boat Party', 'Brewery Tour', 'Botanical Gardens', 'Esthers Follies', 'Pinball Arcade')
+                var data = selectOneEatsAndTwoActivities(Eats, Activities);
+                console.log(data);
+
+                $scope.data = data;
+                
+                function selectOneEatsAndTwoActivities(eats, activities) {
+
+                  var obj = new Object
+                  obj.eat = getRandomEat(eats)
+                  obj.activities = new Array(getRandomActivities(activities), getRandomActivities(activities))
+
+                  return obj
+                }
+
+                function getRandomActivities(activities) {
+
+                    return activities[Math.round((Math.random() * (activities.length - 1)))];
+                }
+
+                function getRandomEat(eats) {
+
+                  return eats[Math.round((Math.random() * (eats.length - 1)))];
+                }
+
+              }]);
+              
+
+    </script>
+
+  </body>
+</html>
