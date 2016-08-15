@@ -28,14 +28,19 @@
     <md-toolbar layout="row" layout-align="center start">
       <h1>Funday - Beta</h1>
     </md-toolbar>
-
-    <md-content>
+  
+    <md-content layout="row" layout-align="center start">
       <md-card>
-       <md-card-content>
-         <h2>Your Super Fun Day!</h2>
-         <p>{{data.eat}}</p>
-         <p>{{data.activity}}</p>
-       </md-card-content>
+         <md-card-content ng-show="day" ng-init="false" layout="column">
+           <h2>Your Super Fun Day!</h2>
+           <h3>Brunch</h3>
+           <p>{{data.eat}}</p>
+           <h3>Activities</h3>
+           <div ng-repeat="activity in data.activities">
+            <p>{{activity}}</p>
+           </div>
+         </md-card-content>
+         <md-button class="md-raised" ng-show="!day" ng-click="day = true" >GENERATE DAY</md-button>
       </md-card>
     </md-content>
 
@@ -97,8 +102,6 @@
               })
               .controller('FundayController',['$scope', function($scope) {
 
-                
-
                 var Eats = new Array('Moonshines', 'Magnolia Cafe', 'South Congress Cafe', 'Bouldin Creek Cafe', '24 Diner', 'Lockhart BBQ', 'Franklins BBQ', 'The Oasis', 'Moonshines', 'Bangers', 'La Barbecue', 'Pinthouse Pizza', 'Elephant Room', 'The Whip In');
                 var Activities = new Array('Houston Space Center', 'Austin Zoo', 'Cathedral of Junk', 'Whip In', 'Enchanted Rock', 'Lost Maples', '4 Hour Float', 'Fredericksburg Wineries', 'Hamilton Pool', 'Jacobs Well', 'Blue Hole', 'Nascar', 'Round Rock Express', 'The Oasis', 'Deep Eddy Distillery', 'Galveston/Corpus', 'Rodeo', 'WWE', 'Monster Truck Rally', 'Gruene Hall', 'Broken Spoke', 'Duck Boat Tour', 'Segway Tour', 'Capital Tour', 'Concealed Handgun', 'Skeet Shooting', 'Twisted X Brewery', 'Blue Owl Brewery', 'Lake Travis Winery Tour', 'Live Music', 'Two Stepping', 'Ziplining', 'Indoor Skydiving', 'Bat Boat', 'Schlitterbahn', 'Surf Park', 'Sculpture Garden', 'Cathedral of Junk', 'Hippies Hollow', 'Boat Party', 'Brewery Tour', 'Botanical Gardens', 'Esthers Follies', 'Pinball Arcade')
                 var data = selectOneEatsAndTwoActivities(Eats, Activities);
@@ -108,13 +111,21 @@
                 
                 function selectOneEatsAndTwoActivities(eats, activities) {
 
-                  var eatsSelector = Math.round((Math.random() * (eats.length - 1)));
-                  var activitiesSelector = Math.round((Math.random() * (activities.length - 1)));
                   var obj = new Object
-                  obj.eat = eats[eatsSelector];
-                  obj.activities = new Array(activities[activitiesSelector])
+                  obj.eat = getRandomEat(eats)
+                  obj.activities = new Array(getRandomActivities(activities), getRandomActivities(activities))
 
                   return obj
+                }
+
+                function getRandomActivities(activities) {
+
+                    return activities[Math.round((Math.random() * (activities.length - 1)))];
+                }
+
+                function getRandomEat(eats) {
+
+                  return eats[Math.round((Math.random() * (eats.length - 1)))];
                 }
 
               }]);
