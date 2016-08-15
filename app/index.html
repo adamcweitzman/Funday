@@ -28,6 +28,17 @@
     <md-toolbar layout="row" layout-align="center start">
       <h1>Funday - Beta</h1>
     </md-toolbar>
+    <md-content>
+      <md-card>
+       <md-card-content>
+         <h2>Your Super Fun Day!</h2>
+         <p>Card content</p>
+       </md-card-content>
+       <md-card-footer>
+         Card footer
+       </md-card-footer>
+      </md-card>
+    </md-content>
 
 <!--     <div flex layout="row">
 
@@ -87,7 +98,25 @@
               })
               .controller('FundayController',['$scope', function($scope) {
 
-                console.log('hi wats up')
+                
+
+                var Eats = new Array('Moonshines', 'Magnolia Cafe', 'South Congress Cafe', 'Bouldin Creek Cafe', '24 Diner');
+                var Activities = new Array('Houston Space Center', 'Austin Zoo', 'Cathedral of Junk', 'Whip In', 'Enchanted Rock', 'Lost Maples', '4 Hour Float', 'Fredericksburg Wineries')
+                var data = selectOneEatsAndTwoActivities(Eats, Activities);
+                console.log(data);
+
+                $scope.data = data;
+                
+                function selectOneEatsAndTwoActivities(eats, activities) {
+
+                  var eatsSelector = Math.round((Math.random() * (eats.length - 1)));
+                  var activitiesSelector = Math.round((Math.random() * (activities.length - 1)));
+                  var obj = new Object
+                  obj.eat = eats[eatsSelector];
+                  obj.activity = activities[activitiesSelector];
+
+                  return obj
+                }
 
               }]);
               
