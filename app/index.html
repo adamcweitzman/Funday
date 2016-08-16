@@ -25,11 +25,11 @@
 
   <body ng-app="Funday" layout="column" ng-controller="FundayController as ctrl" ng-cloak>
 
-    <md-toolbar layout="row" layout-align="center start">
+    <md-toolbar id="toolbar" layout="row" layout-align="center start">
       <h1>Funday - Beta</h1>
     </md-toolbar>
   
-    <md-content layout="row" layout-align="center start">
+    <md-content id="content" layout="row" layout-align="center start">
       <md-card>
          <md-card-content ng-show="day" ng-init="false" layout="column">
            <h2>Your Super Fun Day!</h2>

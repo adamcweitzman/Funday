@@ -25,22 +25,33 @@
 
   <body ng-app="Funday" layout="column" ng-controller="FundayController as ctrl" ng-cloak>
 
-    <md-toolbar layout="row" layout-align="center start">
+    <md-toolbar id="toolbar" layout="row" layout-align="center start">
       <h1>Funday - Beta</h1>
     </md-toolbar>
   
     <md-content layout="row" layout-align="center start">
       <md-card>
          <md-card-content ng-show="day" ng-init="false" layout="column">
-           <h2>Your Super Fun Day!</h2>
+           <h2>Your Super Fun Day 1!</h2>
            <h3>Brunch</h3>
-           <p>{{data.eat}}</p>
+           <p>{{data.cardOne.eat}}</p>
            <h3>Activities</h3>
-           <div ng-repeat="activity in data.activities">
+           <div ng-repeat="activity in data.cardOne.activities">
             <p>{{activity}}</p>
            </div>
          </md-card-content>
-         <md-button class="md-raised" ng-show="!day" ng-click="day = true" >GENERATE DAY</md-button>
+      </md-card>
+      <md-button id="generate" class="md-raised" ng-show="!day" ng-click="day = true" >GENERATE DAYS</md-button>
+      <md-card>
+         <md-card-content ng-show="day" ng-init="false" layout="column">
+           <h2>Your Super Fun Day 2!</h2>
+           <h3>Brunch</h3>
+           <p>{{data.cardTwo.eat}}</p>
+           <h3>Activities</h3>
+           <div ng-repeat="activity in data.cardTwo.activities">
+            <p>{{activity}}</p>
+           </div>
+         </md-card-content>
       </md-card>
     </md-content>
 
@@ -102,10 +113,13 @@
 
                 var Eats = new Array('Moonshines', 'Magnolia Cafe', 'South Congress Cafe', 'Bouldin Creek Cafe', '24 Diner', 'Lockhart BBQ', 'Franklins BBQ', 'The Oasis', 'Moonshines', 'Bangers', 'La Barbecue', 'Pinthouse Pizza', 'Elephant Room', 'The Whip In');
                 var Activities = new Array('Houston Space Center', 'Austin Zoo', 'Cathedral of Junk', 'Whip In', 'Enchanted Rock', 'Lost Maples', '4 Hour Float', 'Fredericksburg Wineries', 'Hamilton Pool', 'Jacobs Well', 'Blue Hole', 'Nascar', 'Round Rock Express', 'The Oasis', 'Deep Eddy Distillery', 'Galveston/Corpus', 'Rodeo', 'WWE', 'Monster Truck Rally', 'Gruene Hall', 'Broken Spoke', 'Duck Boat Tour', 'Segway Tour', 'Capital Tour', 'Concealed Handgun', 'Skeet Shooting', 'Twisted X Brewery', 'Blue Owl Brewery', 'Lake Travis Winery Tour', 'Live Music', 'Two Stepping', 'Ziplining', 'Indoor Skydiving', 'Bat Boat', 'Schlitterbahn', 'Surf Park', 'Sculpture Garden', 'Cathedral of Junk', 'Hippies Hollow', 'Boat Party', 'Brewery Tour', 'Botanical Gardens', 'Esthers Follies', 'Pinball Arcade')
-                var data = selectOneEatsAndTwoActivities(Eats, Activities);
-                console.log(data);
 
+                var data = new Object
+                data.cardOne = selectOneEatsAndTwoActivities(Eats, Activities);
+                data.cardTwo = selectOneEatsAndTwoActivities(Eats, Activities);
                 $scope.data = data;
+
+                console.log(data);
                 
                 function selectOneEatsAndTwoActivities(eats, activities) {
 
