@@ -20,13 +20,18 @@ md-content {
   color: #F4F1DE;
 }
 
-md-card {
+.sunnyCard {
   background-color: #3D405B;
   color: #F4F1DE;
 }
 
-#generate {
+#sunnyButton {
   background-color: #81B29A;
+  color: #F4F1DE;
+}
+
+#rainyButton {
+  background-color: #3D405B;
   color: #F4F1DE;
 }
 
@@ -35,4 +40,8 @@ p {
 }
 
 footer {
+}
+
+h3 {
+  margin-top: 39px;
 }

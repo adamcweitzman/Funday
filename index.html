@@ -30,7 +30,7 @@
     </md-toolbar>
 
     <md-content layout="row" layout-align="center start">
-      <md-card>
+      <md-card class="sunnyCard">
          <md-card-content ng-show="day" ng-init="false" layout="column">
            <h2>Your Super Fun Day 1!</h2>
            <h3>Brunch</h3>
@@ -41,8 +41,10 @@
            </div>
          </md-card-content>
       </md-card>
-      <md-button id="generate" class="md-raised" ng-show="!day" ng-click="day = true" >GENERATE DAYS</md-button>
-      <md-card>
+      <md-button layout="column" id="sunnyButton" class="md-raised" ng-show="!day" ng-click="day = true" >SUNNY DAY</md-button>
+      <h3 layout="column">Or</h3>
+      <md-button layout="column" id="rainyButton" class="md-raised" ng-show="!day" ng-click="rainy = true">RAINY DAY</md-button>
+      <md-card class="sunnyCard">
          <md-card-content ng-show="day" ng-init="false" layout="column">
            <h2>Your Super Fun Day 2!</h2>
            <h3>Brunch</h3>
