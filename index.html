@@ -34,18 +34,39 @@
          <md-card-content ng-show="day" ng-init="false" layout="column">
            <h2>Your Super Fun Day 1!</h2>
            <h3>Brunch</h3>
-           <p>{{data.cardOne.eat}}</p>
+           <p class="sunnyVariable">{{data.cardOne.eat}}</p>
            <h3>Activities</h3>
            <div ng-repeat="activity in data.cardOne.activities">
+            <p class=sunnyVariable>{{activity}}</p>
+           </div>
+         </md-card-content>
+      </md-card>
+      <md-card class="rainyCard">
+         <md-card-content ng-show="rainy" ng-init="false" layout="column">
+           <h2>Your Super Fun Day 2!</h2>
+           <h3>Brunch</h3>
+           <p>{{data.cardTwo.eat}}</p>
+           <h3>Activities</h3>
+           <div ng-repeat="activity in data.cardTwo.activities">
             <p>{{activity}}</p>
            </div>
          </md-card-content>
       </md-card>
-      <md-button layout="column" id="sunnyButton" class="md-raised" ng-show="!day" ng-click="day = true" >SUNNY DAY</md-button>
-      <h3 layout="column">Or</h3>
-      <md-button layout="column" id="rainyButton" class="md-raised" ng-show="!day" ng-click="rainy = true">RAINY DAY</md-button>
+      <md-button layout="column" id="sunnyButton" class="md-raised" ng-show="!day" ng-hide="rainy" ng-click="day = true" >SUNNY DAY</md-button>
+      <md-button layout="column" id="rainyButton" class="md-raised" ng-show="!day" ng-hide="rainy" ng-click="rainy = true">RAINY DAY</md-button>
       <md-card class="sunnyCard">
          <md-card-content ng-show="day" ng-init="false" layout="column">
+           <h2>Your Super Fun Day 2!</h2>
+           <h3>Brunch</h3>
+           <p class="sunnyVariable">{{data.cardTwo.eat}}</p>
+           <h3>Activities</h3>
+           <div ng-repeat="activity in data.cardTwo.activities">
+            <p class="sunnyVariable">{{activity}}</p>
+           </div>
+         </md-card-content>
+      </md-card>
+      <md-card class="rainyCard">
+         <md-card-content ng-show="rainy" ng-init="false" layout="column">
            <h2>Your Super Fun Day 2!</h2>
            <h3>Brunch</h3>
            <p>{{data.cardTwo.eat}}</p>

@@ -21,6 +21,11 @@ md-content {
 }
 
 .sunnyCard {
+  background-color: #81B29A;
+  color: #3D405B;
+}
+
+.rainyCard {
   background-color: #3D405B;
   color: #F4F1DE;
 }
@@ -37,6 +42,10 @@ md-content {
 
 p {
   color: #81B29A;
+}
+
+.sunnyVariable {
+  color: #F4F1DE;
 }
 
 footer {
