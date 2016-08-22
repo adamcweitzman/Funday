@@ -34,9 +34,9 @@
          <md-card-content ng-show="day" ng-init="false" layout="column">
            <h2>Your Super Fun Day 1!</h2>
            <h3>Brunch</h3>
-           <p class="sunnyVariable">{{data.cardOne.eat}}</p>
+           <p class="sunnyVariable">{{sunnyData.cardOne.eat}}</p>
            <h3>Activities</h3>
-           <div ng-repeat="activity in data.cardOne.activities">
+           <div ng-repeat="activity in sunnyData.cardOne.activities">
             <p class=sunnyVariable>{{activity}}</p>
            </div>
          </md-card-content>
@@ -45,9 +45,9 @@
          <md-card-content ng-show="rainy" ng-init="false" layout="column">
            <h2>Your Super Fun Day 2!</h2>
            <h3>Brunch</h3>
-           <p>{{data.cardTwo.eat}}</p>
+           <p>{{rainyData.cardTwo.eat}}</p>
            <h3>Activities</h3>
-           <div ng-repeat="activity in data.cardTwo.activities">
+           <div ng-repeat="activity in rainyData.cardOne.activities">
             <p>{{activity}}</p>
            </div>
          </md-card-content>
@@ -58,9 +58,9 @@
          <md-card-content ng-show="day" ng-init="false" layout="column">
            <h2>Your Super Fun Day 2!</h2>
            <h3>Brunch</h3>
-           <p class="sunnyVariable">{{data.cardTwo.eat}}</p>
+           <p class="sunnyVariable">{{sunnyData.cardTwo.eat}}</p>
            <h3>Activities</h3>
-           <div ng-repeat="activity in data.cardTwo.activities">
+           <div ng-repeat="activity in sunnyData.cardTwo.activities">
             <p class="sunnyVariable">{{activity}}</p>
            </div>
          </md-card-content>
@@ -69,9 +69,9 @@
          <md-card-content ng-show="rainy" ng-init="false" layout="column">
            <h2>Your Super Fun Day 2!</h2>
            <h3>Brunch</h3>
-           <p>{{data.cardTwo.eat}}</p>
+           <p>{{rainyData.cardOne.eat}}</p>
            <h3>Activities</h3>
-           <div ng-repeat="activity in data.cardTwo.activities">
+           <div ng-repeat="activity in rainyData.cardTwo.activities">
             <p>{{activity}}</p>
            </div>
          </md-card-content>
@@ -138,20 +138,29 @@
               .controller('FundayController',['$scope', function($scope) {
 
                 var Eats = new Array('Moonshines', 'Magnolia Cafe', 'South Congress Cafe', 'Bouldin Creek Cafe', '24 Diner', 'Lockhart BBQ', 'Franklins BBQ', 'The Oasis', 'Moonshines', 'Bangers', 'La Barbecue', 'Pinthouse Pizza', 'Elephant Room', 'The Whip In');
-                var Activities = new Array('Houston Space Center', 'Austin Zoo', 'Cathedral of Junk', 'Whip In', 'Enchanted Rock', 'Lost Maples', '4 Hour Float', 'Fredericksburg Wineries', 'Hamilton Pool', 'Jacobs Well', 'Blue Hole', 'Nascar', 'Round Rock Express', 'The Oasis', 'Deep Eddy Distillery', 'Galveston/Corpus', 'Rodeo', 'WWE', 'Monster Truck Rally', 'Gruene Hall', 'Broken Spoke', 'Duck Boat Tour', 'Segway Tour', 'Capital Tour', 'Concealed Handgun', 'Skeet Shooting', 'Twisted X Brewery', 'Blue Owl Brewery', 'Lake Travis Winery Tour', 'Live Music', 'Two Stepping', 'Ziplining', 'Indoor Skydiving', 'Bat Boat', 'Schlitterbahn', 'Surf Park', 'Sculpture Garden', 'Cathedral of Junk', 'Hippies Hollow', 'Boat Party', 'Brewery Tour', 'Botanical Gardens', 'Esthers Follies', 'Pinball Arcade')
+                var Activities = new Array('Houston Space Center', 'Austin Zoo', 'Cathedral of Junk', 'Enchanted Rock', 'Lost Maples', '4 Hour Float', 'Fredericksburg Wineries', 'Hamilton Pool', 'Blue Hole', 'Round Rock Express', 'The Oasis', 'Deep Eddy Distillery', 'Galveston/Corpus', 'Rodeo', 'WWE', 'Gruene Hall', 'Duck Boat Tour', 'Segway Tour', 'Capital Tour', 'Skeet Shooting', 'Twisted X Brewery', 'Blue Owl Brewery', 'Lake Travis Winery Tour', 'Ziplining', 'Indoor Skydiving', 'Schlitterbahn', 'Sculpture Garden', 'Cathedral of Junk', 'Hippies Hollow', 'Boat Party', 'Brewery Tour', 'Botanical Gardens', 'Free Yoga', 'Kayaking', 'Paddle Boarding');
 
-                var data = new Object
-                data.cardOne = selectOneEatsAndTwoActivities(Eats, Activities);
-                data.cardTwo = selectOneEatsAndTwoActivities(Eats, Activities);
-                $scope.data = data;
+                var rainyDayActivities = new Array('Laser Tag', 'Bowling', 'Whip In', 'Pinball Arcade','Day Spa/Massage' );
+                var nightActivities = new Array('Esthers Follies', 'Two Stepping', 'Bat Boat', 'Broken Spoke');
+                var scheduledActivities = new Array('Jacobs Well', 'Nascar', 'Monster Truck Rally');
 
-                console.log(data);
+                var sunnyData = new Object
+                sunnyData.cardOne = selectOneEatsAndOneActivities(Eats, Activities);
+                sunnyData.cardTwo = selectOneEatsAndOneActivities(Eats, Activities);
+                $scope.sunnyData = sunnyData;
+
+                var rainyData = new Object
+                rainyData.cardOne = selectOneEatsAndOneActivities(Eats, rainyDayActivities);
+                rainyData.cardTwo = selectOneEatsAndOneActivities(Eats, rainyDayActivities);
+                $scope.rainyData = sunnyData;
+
+                console.log(rainyData, sunnyData);
                 
-                function selectOneEatsAndTwoActivities(eats, activities) {
+                function selectOneEatsAndOneActivities(eats, activities) {
 
                   var obj = new Object
-                  obj.eat = getRandomEat(eats)
-                  obj.activities = new Array(getRandomActivities(activities), getRandomActivities(activities))
+                  obj.eat = getRandomEat(eats);
+                  obj.activities = new Array(getRandomActivities(activities));
 
                   return obj
                 }
