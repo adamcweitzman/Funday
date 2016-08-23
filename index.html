@@ -30,7 +30,7 @@
     </md-toolbar>
 
     <md-content layout="column" layout-align="start center">
-      <div layout="row">
+      <div id="cardRow" layout="row">
         <md-card class="sunnyCard">
            <md-card-content ng-show="day" ng-init="false" layout="column">
              <h2>Your Super Fun Day 1!</h2>
@@ -57,7 +57,7 @@
         <md-button layout="column" id="rainyButton" class="md-raised" ng-show="!day" ng-hide="rainy" ng-click="rainy = true">RAINY DAY</md-button>
         <md-card class="sunnyCard">
            <md-card-content ng-show="day" ng-init="false" layout="column">
-             <h2>Your Super Fun Day 2!</h2>
+             <h2>Your Super Fun Day 1!</h2>
              <h3>Brunch</h3>
              <p class="sunnyVariable">{{sunnyData.cardTwo.eat}}</p>
              <h3>Activity</h3>
@@ -78,15 +78,12 @@
            </md-card-content>
         </md-card>
       </div>
-      <div layout="row">
+      <div id="nightCardRow" layout="row">
         <md-card class="nightCard">
-           <md-card-content ng-show="day || rainy" ng-init="false" layout="column">
-             <h2>BONUS NIGHT ACTIVITY!</h2>
-             <h3>Brunch</h3>
-             <p class="sunnyVariable">{{sunnyData.cardOne.eat}}</p>
-             <h3>Activity</h3>
-             <div ng-repeat="activity in sunnyData.cardOne.activities">
-              <p class=sunnyVariable>{{activity}}</p>
+           <md-card-content ng-show="day || rainy" ng-init="false" layout-align="start center" layout="column">
+             <h2>Bonus Night Activity!</h2>
+             <div ng-repeat="activity in nightData">
+              <p class=nightVariable>{{activity}}</p>
              </div>
            </md-card-content>
         </md-card>

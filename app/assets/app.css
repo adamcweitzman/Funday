@@ -30,6 +30,10 @@ md-content {
   color: #F4F1DE;
 }
 
+.nightCard {
+  background-color: #F2CC8F;
+}
+
 #sunnyButton {
   background-color: #81B29A;
   color: #F4F1DE;
@@ -46,6 +50,18 @@ p {
 
 .sunnyVariable {
   color: #F4F1DE;
+}
+
+.nightVariable {
+  color: #E07A5F;
+}
+
+#cardRow {
+  margin-top: 20px;
+}
+
+#nightCardRow {
+  margin-top: 20px;
 }
 
 footer {
