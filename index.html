@@ -44,7 +44,7 @@
         </md-card>
         <md-card class="rainyCard">
            <md-card-content ng-show="rainy" ng-init="false" layout="column">
-             <h2>Your Super Fun Day 2!</h2>
+             <h2>Your Super Fun Day 1!</h2>
              <h3>Brunch</h3>
              <p>{{rainyData.cardTwo.eat}}</p>
              <h3>Activity</h3>
@@ -57,7 +57,7 @@
         <md-button layout="column" id="rainyButton" class="md-raised" ng-show="!day" ng-hide="rainy" ng-click="rainy = true">RAINY DAY</md-button>
         <md-card class="sunnyCard">
            <md-card-content ng-show="day" ng-init="false" layout="column">
-             <h2>Your Super Fun Day 1!</h2>
+             <h2>Your Super Fun Day 2!</h2>
              <h3>Brunch</h3>
              <p class="sunnyVariable">{{sunnyData.cardTwo.eat}}</p>
              <h3>Activity</h3>
