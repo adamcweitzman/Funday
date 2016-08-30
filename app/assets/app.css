@@ -64,9 +64,31 @@ p {
   margin-top: 20px;
 }
 
-footer {
-}
-
 h3 {
   margin-top: 10px;
+}
+
+@media screen and (max-width: 550px) /* Mobile */ {
+  .rainyCard {
+    height: 350px;
+  }
+  .sunnyCard {
+    height: 350px;
+  }
+  #sunnyButton {
+    height: 10px;
+  }
+  #rainyButton {
+    height: 10px;
+  }
+  .nightCard {
+    margin-top: 110px;
+    height: 125px;
+  }
+  #card-row {
+    margin-top: 50px;
+  }
+  .hide {
+    display: none;
+  }
 }
